@@ -11,7 +11,7 @@ def compute_height(n, parents):
     
     max_height = 0
     # Your code here
-    for in range(n):
+    for i in range(n):
         node_height = 0
         parent = parents[i]
         while parent != - 1:
