@@ -5,27 +5,6 @@ import threading
 import numpy
 
 
-def compute_height(n, parents):
-    # Write this function
-    heights = [0]*n
-    
-    max_height = 0
-    # Your code here
-    for i in range(n):
-        node_height = 0
-        parent = parents[i]
-        while parent != - 1:
-            if heights[i]:
-                node_height += heights[i]
-                break
-            node_height += 1
-            parent = parents[parent]
-        heights[i] = node_height
-        max_height = max(max_height, node_height)
-    
-    return max_height
-
-
 def main():
     # implement input form keyboard and from files
     check_for_I = input().upper() 
@@ -48,7 +27,27 @@ def main():
         except FileNotFoundError:
             print("File not found!")
             return
+
+        
+def compute_height(n, parents):
+    # Write this function
+    heights = [0]*n
     
+    max_height = 0
+    # Your code here
+    for i in range(n):
+        node_height = 0
+        parent = parents[i]
+        while parent != - 1:
+            if heights[i]:
+                node_height += heights[i]
+                break
+            node_height += 1
+            parent = parents[parent]
+        heights[i] = node_height
+        max_height = max(max_height, node_height)
+    
+    return max_height
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
