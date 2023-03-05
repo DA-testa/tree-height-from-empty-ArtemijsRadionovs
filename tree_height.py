@@ -27,7 +27,8 @@ def main():
         if n < parents.size:
             print("The number of child offspring is higher than it should be!")
             return
-        print("3")
+        y = 3
+        print(y)
         # print(parseTree(parents, "-1"))
         
     # let user input file name to use, don't allow file names with letter a
