@@ -18,7 +18,7 @@ def parseTree(parents, currElem, deepness = 0):
 
 def main():
     # implement input form keyboard and from files
-    check_for_I = input().upper() 
+    check_for_I = input().replace('\r','')
     # print(f"get {check_for_I}")
     if check_for_I == "I":
         n = int(input())
@@ -40,7 +40,7 @@ def main():
             print("File name cannot contain letter 'a'!")
             return
         try:
-            with open('test/' + file_name, 'r') as f:
+            with open('./test/' + file_name, 'r') as f:
                 n = int(f.readline())
                 parents = list(map(int, f.readline().split()))
                 print(parseTree(parents, "-1"))
