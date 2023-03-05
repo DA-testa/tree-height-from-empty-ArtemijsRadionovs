@@ -19,10 +19,10 @@ def parseTree(parents, currElem, deepness = 0):
 def main():
     # implement input form keyboard and from files
     check_for_I = input().upper() 
-    print(f"get {check_for_I}")
+    # print(f"get {check_for_I}")
     if check_for_I == "I":
         n = int(input())
-        print(f"Amount: {n}")
+        # print(f"Amount: {n}")
         parents = np.array(input().split())
         if n < parents.size:
             print("The number of child offspring is higher than it should be!")
