@@ -4,22 +4,29 @@ import sys
 import threading
 import numpy as np
 
-def parseTree(parents, currElem, deepness = 0):
-  return_deep = deepness;
-  childList = np.where(parents == currElem)[0]
 
-  if len(childList) > 0 :
-    for i in childList:
-      return_deep = parseTree(parents, str(i), deepness+1)
-  return return_deep
+def parseTree(parents, currElem, deepness = 0):
+    return_deep = deepness;
+    childList = np.where(parents == currElem)[0]
+    
+    if len(childList) > 0 :
+        childDeepness = []
+        for i in childList:
+            childDeepness.append(parseTree(parents, str(i), deepness+1))
+        return_deep = np.max(childDeepness)
+    return return_deep
 
 def main():
     # implement input form keyboard and from files
     check_for_I = input().upper() 
-    
+    print(f"get {check_for_I}")
     if check_for_I == "I":
         n = int(input())
+        print(f"Amount: {n}")
         parents = np.array(input().split())
+        if n < parents.size:
+            print("The number of child offspring is higher than it should be!")
+            return
         print(parseTree(parents, "-1"))
         
     # let user input file name to use, don't allow file names with letter a
