@@ -2,8 +2,16 @@
 
 import sys
 import threading
-import numpy
+import numpy as np
 
+def parseTree(parents, currElem, deepness = 0):
+  return_deep = deepness;
+  childList = np.where(parents == currElem)[0]
+
+  if len(childList) > 0 :
+    for i in childList:
+      return_deep = parseTree(parents, str(i), deepness+1)
+  return return_deep
 
 def main():
     # implement input form keyboard and from files
@@ -31,14 +39,7 @@ def main():
             print("File not found!")
             return
 
-def parseTree(parents, currElem, deepness = 0):
-  return_deep = deepness;
-  childList = np.where(parents == currElem)[0]
 
-  if len(childList) > 0 :
-    for i in childList:
-      return_deep = parseTree(parents, str(i), deepness+1)
-  return return_deep
 
 # def compute_height(n, parents):
 # def compute_height(n, parents):
@@ -71,4 +72,3 @@ def parseTree(parents, currElem, deepness = 0):
 sys.setrecursionlimit(10**7)  # max depth of recursion
 threading.stack_size(2**27)   # new thread will get stack of such size
 threading.Thread(target=main).start()
-# print(numpy.array([1,2,3]))
