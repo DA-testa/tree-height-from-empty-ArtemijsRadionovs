@@ -10,8 +10,10 @@ def main():
     check_for_I = input().upper() 
     
     if check_for_I == "I":
-        n = int(input().strip())
-        parents = list(map(int, input().split()))
+        n = int(input())
+        parents = np.array(input().split())
+        print(parseTree(parents, "-1"))
+        
     # let user input file name to use, don't allow file names with letter a
     # account for github input inprecision    
         
@@ -24,34 +26,44 @@ def main():
             with open('test/' + file_name, 'r') as f:
                 n = int(f.readline())
                 parents = list(map(int, f.readline().split()))
+                print(parseTree(parents, "-1"))
         except FileNotFoundError:
             print("File not found!")
             return
 
-        
-def compute_height(n, parents):
-    # Write this function
-    heights = [0]*n
+def parseTree(parents, currElem, deepness = 0):
+  return_deep = deepness;
+  childList = np.where(parents == currElem)[0]
+
+  if len(childList) > 0 :
+    for i in childList:
+      return_deep = parseTree(parents, str(i), deepness+1)
+  return return_deep
+
+# def compute_height(n, parents):
+# def compute_height(n, parents):
+#     # Write this function
+#     heights = [0]*n
     
-    max_height = 0
-    # Your code here
-    for i in range(n):
-        node_height = 0
-        parent = parents[i]
-        while parent != - 1:
-            if heights[i]:
-                node_height += heights[i]
-                break
-            node_height += 1
-            parent = parents[parent]
-        heights[i] = node_height
-        max_height = max(max_height, node_height)
+#     max_height = 0
+#     # Your code here
+#     for i in range(n):
+#         node_height = 0
+#         parent = parents[i]
+#         while parent != - 1:
+#             if heights[i]:
+#                 node_height += heights[i]
+#                 break
+#             node_height += 1
+#             parent = parents[parent]
+#         heights[i] = node_height
+#         max_height = max(max_height, node_height)
     
-    return max_height
+#     return max_height
     # input number of elements
     # input values in one variable, separate with space, split these values in an array
     # call the function and output it's result
-    print(compute_height(n, parents))
+#     print(compute_height(n, parents))
 
 # In Python, the default limit on recursion depth is rather low,
 # so raise it here for this problem. Note that to take advantage
